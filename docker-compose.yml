@@ -6,7 +6,6 @@ services:
       context: ./
       args:
         ARCH: i386
-        WX_VER: 3.0.3
     container_name: 'build_i386'
     stdin_open: true
     tty: true
@@ -16,7 +15,6 @@ services:
       context: ./
       args:
         ARCH: amd64
-        WX_VER: 3.0.3
     container_name: 'build_amd64'
     stdin_open: true
     tty: true    
@@ -26,7 +24,6 @@ services:
       context: ./
       args:
         ARCH: armhf
-        WX_VER: 3.0.3
     container_name: 'build_armhf'
     stdin_open: true
     tty: true    
@@ -36,7 +33,6 @@ services:
       context: ./
       args:
         ARCH: arm64
-        WX_VER: 3.0.3
     container_name: 'build_arm64'
     stdin_open: true
     tty: true
@@ -46,7 +42,6 @@ services:
       context: ./
       args:
         ARCH: win32
-        WX_VER: 3.0.3
     container_name: 'build_win32'
     stdin_open: true
     tty: true
@@ -56,8 +51,16 @@ services:
       context: ./
       args:
         ARCH: win64
-        WX_VER: 3.0.3
     container_name: 'build_win64'
     stdin_open: true
     tty: true
     restart: unless-stopped
+  osx:
+    build:
+      context: ./
+      args:
+        ARCH: osx
+    container_name: 'build_osx'                                                                                                                                  
+    stdin_open: true                                                                                                                                               
+    tty: true                                                                                                                                                      
+    restart: unless-stopped 
