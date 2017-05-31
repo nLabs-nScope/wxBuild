@@ -10,10 +10,11 @@ RUN apt-get update && \
 	clang \
 	build-essential \
     && \
-    git clone https://github.com/tpoechtrager/osxcross.git && \
+    git clone https://github.com/nLabs-nScope/osxcross.git && \
     mv MacOSX10.11.sdk.tar.xz /osxcross/tarballs/ && \
-    /osxcross/build.sh OSX_VERSION_MIN=10.7 UNATTENDED=1 && \
-    export TRIPLE="x86_64-apple-darwin" && \
+    UNATTENDED=1 /osxcross/build.sh OSX_VERSION_MIN=10.7 && \
+    ln -s /osxcross/target/bin/* /usr/local/bin/ && \
+    export TRIPLE="x86_64-apple-darwin15" && \
     export WXTOOLKIT="cocoa" && \
     export CC=x86_64-apple-darwin15-clang && \
     export CXX=x86_64-apple-darwin15-clang++ && \
@@ -22,6 +23,7 @@ RUN apt-get update && \
     wget -O config.guess 'http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.guess;hb=HEAD' && \
     wget -O config.sub 'http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.sub;hb=HEAD' && \
     mkdir build-local && \
-    ../configure --build=x86_64-pc-linux-gnu --host=$TRIPLE \
-        --enable-unicode --with-opengl --with-$WXTOOLKIT CONFIGFLAGS=--with-macosx-version-min=10.7 && \
-    make
+    cd build-local && \
+    ../configure --disable-mediactrl --disable-shared --build=x86_64-pc-linux-gnu --host=$TRIPLE \
+        --enable-unicode --with-opengl --with-$WXTOOLKIT --with-macosx-version-min=10.7 && \
+    make install

@@ -49,7 +49,7 @@ RUN dpkg --add-architecture $ARCH && \
     wget -O config.sub 'http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.sub;hb=HEAD' && \
     mkdir build-local && \
     cd build-local && \
-    ../configure --build=x86_64-pc-linux-gnu --host=$TRIPLE \
+    ../configure --disable-mediactrl --disable-shared --build=x86_64-pc-linux-gnu --host=$TRIPLE \
         --enable-unicode --with-opengl --with-$WXTOOLKIT && \
     make install
 

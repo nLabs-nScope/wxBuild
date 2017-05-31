@@ -3,7 +3,7 @@ version: '3'
 services:  
   i386:
     build:
-      context: ./
+      context: ./linux
       args:
         ARCH: i386
     container_name: 'build_i386'
@@ -12,7 +12,7 @@ services:
     restart: unless-stopped
   amd64:
     build: 
-      context: ./
+      context: ./linux
       args:
         ARCH: amd64
     container_name: 'build_amd64'
@@ -21,7 +21,7 @@ services:
     restart: unless-stopped
   armhf:
     build:
-      context: ./
+      context: ./linux
       args:
         ARCH: armhf
     container_name: 'build_armhf'
@@ -30,7 +30,7 @@ services:
     restart: unless-stopped
   arm64:
     build:
-      context: ./
+      context: ./linux
       args:
         ARCH: arm64
     container_name: 'build_arm64'
@@ -39,7 +39,7 @@ services:
     restart: unless-stopped
   win32:
     build:
-      context: ./
+      context: ./windows
       args:
         ARCH: win32
     container_name: 'build_win32'
@@ -48,7 +48,7 @@ services:
     restart: unless-stopped
   win64:
     build:
-      context: ./
+      context: ./windows
       args:
         ARCH: win64
     container_name: 'build_win64'
@@ -57,7 +57,7 @@ services:
     restart: unless-stopped
   osx:
     build:
-      context: ./
+      context: ./osx
       args:
         ARCH: osx
     container_name: 'build_osx'                                                                                                                                  
