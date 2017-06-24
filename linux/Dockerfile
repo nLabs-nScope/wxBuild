@@ -15,6 +15,7 @@ RUN dpkg --add-architecture $ARCH && \
         libglu1-mesa-dev:$ARCH \
         libtiff5-dev:$ARCH \
         libjpeg-dev:$ARCH \
+	libusb-1.0:$ARCH \
     && \
     if [ $ARCH = "i386" ]; then \
     	apt-get install -y \
