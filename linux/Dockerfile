@@ -16,6 +16,7 @@ RUN dpkg --add-architecture $ARCH && \
         libtiff5-dev:$ARCH \
         libjpeg-dev:$ARCH \
 	libusb-1.0:$ARCH \
+	libudev-dev:$ARCH \
     && \
     if [ $ARCH = "i386" ]; then \
     	apt-get install -y \
