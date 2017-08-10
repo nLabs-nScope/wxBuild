@@ -18,6 +18,9 @@ RUN apt-get update && \
     export WXTOOLKIT="cocoa" && \
     export CC=x86_64-apple-darwin15-clang && \
     export CXX=x86_64-apple-darwin15-clang++ && \
+    export CFLAGS="-stdlib=libc++" && \
+    export CXXFLAGS="-std=c++11 -stdlib=libc++" && \
+    export OBJCXXFLAGS="-stdlib=libc++" && \
     git clone https://github.com/nLabs-nScope/wxWidgets.git -b nScope && \
     cd wxWidgets && \
     wget -O config.guess 'http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.guess;hb=HEAD' && \
