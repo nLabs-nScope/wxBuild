@@ -17,6 +17,7 @@ RUN if [ $ARCH = "win32" ]; then \
         build-essential \
 	mingw-w64 \
 	wget \
+	nsis \
     && \
     update-alternatives --set $TRIPLE-gcc /usr/bin/$TRIPLE-gcc-posix && \
     update-alternatives --set $TRIPLE-g++ /usr/bin/$TRIPLE-g++-posix && \
