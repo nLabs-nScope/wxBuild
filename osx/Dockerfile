@@ -6,6 +6,7 @@ COPY MacOSX10.11.sdk.tar.xz /
 RUN apt-get update && \
     apt-get install -y \
 	git \
+	npm \
 	wget \
 	clang \
 	build-essential \
