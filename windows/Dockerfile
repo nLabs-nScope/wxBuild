@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM ubuntu:bionic
 MAINTAINER David Meyer <david@nscope.org>
 
 ARG ARCH
@@ -21,8 +21,6 @@ RUN if [ $ARCH = "win32" ]; then \
     && \
     update-alternatives --set $TRIPLE-gcc /usr/bin/$TRIPLE-gcc-posix && \
     update-alternatives --set $TRIPLE-g++ /usr/bin/$TRIPLE-g++-posix && \
-    update-alternatives --set $TRIPLE-gfortran /usr/bin/$TRIPLE-gfortran-posix && \
-    update-alternatives --set $TRIPLE-gnat /usr/bin/$TRIPLE-gnat-posix && \
     git clone https://github.com/nLabs-nScope/wxWidgets.git -b nScope && \
     cd wxWidgets && \
     wget -O config.guess 'http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.guess;hb=HEAD' && \

@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM ubuntu:bionic
 MAINTAINER David Meyer <david@nscope.org>
 
 COPY MacOSX10.11.sdk.tar.xz /
