@@ -1,4 +1,4 @@
-FROM ubuntu:bionic
+FROM ubuntu:focal
 MAINTAINER David Meyer <david@nscope.org>
 
 ARG ARCH
