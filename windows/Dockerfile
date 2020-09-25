@@ -3,6 +3,15 @@ MAINTAINER David Meyer <david@nscope.org>
 
 ARG ARCH
 
+RUN apt-get update && \
+    apt-get install -y \
+	git \
+        zip \
+	mingw-w64 \
+	wget \
+	nsis \
+        make
+
 RUN if [ $ARCH = "win32" ]; then \
         export TRIPLE="i686-w64-mingw32" \
     ; elif [ $ARCH = "win64" ]; then \
@@ -10,15 +19,6 @@ RUN if [ $ARCH = "win32" ]; then \
     ; else \
         >&2 echo "incompatible architecture" && exit 1 \
     ; fi && \
-    export WXTOOLKIT="msw" && \
-    apt-get update && \
-    apt-get install -y \
-	git \
-        build-essential \
-	mingw-w64 \
-	wget \
-	nsis \
-    && \
     update-alternatives --set $TRIPLE-gcc /usr/bin/$TRIPLE-gcc-posix && \
     update-alternatives --set $TRIPLE-g++ /usr/bin/$TRIPLE-g++-posix && \
     git clone https://github.com/nLabs-nScope/wxWidgets.git -b nScope && \
@@ -28,6 +28,6 @@ RUN if [ $ARCH = "win32" ]; then \
     mkdir build-local && \
     cd build-local && \
     ../configure --disable-mediactrl --disable-shared --build=x86_64-pc-linux-gnu --host=$TRIPLE \
-        --enable-unicode --with-opengl --with-$WXTOOLKIT && \
-    make install
+        --enable-unicode --with-opengl --with-msw && \
+    make install -j8
 

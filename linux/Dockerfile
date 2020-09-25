@@ -7,9 +7,12 @@ COPY sources.list /etc/apt/sources.list
 
 RUN dpkg --add-architecture $ARCH && \
     apt-get update && \
-    apt-get install -y \
+    DEBIAN_FRONTEND="noninteractive" apt-get install -y \
 	git \
 	wget \
+        zip \
+        make \
+        dpkg-dev \
         libgtk-3-dev:$ARCH \
         libgl1-mesa-dev:$ARCH \
         libglu1-mesa-dev:$ARCH \
@@ -44,7 +47,6 @@ RUN dpkg --add-architecture $ARCH && \
         >&2 echo "incompatible architecture" && exit 1 \
     ; fi && \
     export PKG_CONFIG_PATH=/usr/lib/$TRIPLE/pkgconfig/ && \
-    export WXTOOLKIT="gtk=3" && \
     git clone https://github.com/nLabs-nScope/wxWidgets.git -b nScope && \
     cd wxWidgets && \
     wget -O config.guess 'http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.guess;hb=HEAD' && \
@@ -52,6 +54,6 @@ RUN dpkg --add-architecture $ARCH && \
     mkdir build-local && \
     cd build-local && \
     ../configure --disable-mediactrl --disable-shared --build=x86_64-pc-linux-gnu --host=$TRIPLE \
-        --enable-unicode --with-opengl --with-$WXTOOLKIT && \
-    make install
+        --enable-unicode --with-opengl --with-gtk && \
+    make install -j8
 
